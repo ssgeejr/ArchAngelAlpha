@@ -8,11 +8,11 @@ Sample Project: standalone, java, containerized microservice ... with a Mongo an
 * [Testing](#testing)
 
 #### Build Application
-cd ${project-home}
-git clone https://github.com/ssgeejr/ArchAngel.git
-cd ArchAngel
-git checkout develop
-mvn clean package
+cd ${project-home}  
+git clone https://github.com/ssgeejr/ArchAngel.git  
+cd ArchAngel  
+git checkout develop  
+mvn clean package  
 
 This will compile the two modules service and frontend
 
@@ -21,11 +21,11 @@ Forthcoming
 
 #### Starting
 
-from ${project-home}\ArchAngel\service
-java -jar target\archAngelService.jar -httpPort=9000
+from ${project-home}\ArchAngel\service  
+java -jar target\archAngelService.jar -httpPort=9000  
 
-from ${project-home}\ArchAngel\frontend
-java -jar target\archAngelFrontEnd.jar
+from ${project-home}\ArchAngel\frontend  
+java -jar target\archAngelFrontEnd.jar  
 
 
 #### Testing
