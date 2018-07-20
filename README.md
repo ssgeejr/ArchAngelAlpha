@@ -9,6 +9,7 @@ Sample Project: standalone, java, containerized microservice ... with a Mongo an
 
 #### Build Application
 cd ${project-home}\ArchAngel
+git checkout develop
 mvn clean package
 
 This will compile the two modules service and frontend
