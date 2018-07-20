@@ -8,13 +8,13 @@ Sample Project: standalone, java, containerized microservice ... with a Mongo an
 * [Testing](#testing)
 
 #### Build Application
-cd ${project-home}\ArchAngel
+cd ${project-home}
+git clone https://github.com/ssgeejr/ArchAngel.git
+cd ArchAngel
 git checkout develop
 mvn clean package
 
 This will compile the two modules service and frontend
-
-
 
 #### Build Docker image
 Forthcoming
