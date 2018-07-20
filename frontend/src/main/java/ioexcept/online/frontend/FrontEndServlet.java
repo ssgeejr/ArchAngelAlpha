@@ -1,0 +1,85 @@
+package ioexcept.online.frontend;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.net.*;
+
+public class FrontEndServlet extends HttpServlet {
+
+	private String message;
+
+	public void init() throws ServletException {
+		// Do required initialization
+		message = "Hello World";
+		System.out.println(message);
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Set response content type
+		response.setContentType("text/html");
+		HttpURLConnection conn = null;
+		String searchresult = "";
+		try {
+
+			
+			if(request.getParameter("fieldUno") != null) {
+				System.out.println(noNulls((String)request.getParameter("fieldUno")));
+				String key = noNulls((String)request.getParameter("fieldUno")).equals("0")?"CITY":"ID";
+				String value = noNulls((String)request.getParameter("fieldDos"));
+			
+				URL url = new URL("http://localhost:9000/archangel/query");
+				conn = (HttpURLConnection) url.openConnection();
+				conn.setDoOutput(true);
+				conn.setRequestMethod("POST");
+				conn.setRequestProperty("Content-Type", "application/json");
+				String input = "{\"key\":\"" + key + "\",\"value\":\"" + value + "\"}";
+				System.out.println(input);
+				OutputStream os = conn.getOutputStream();
+				os.write(input.getBytes());
+				os.flush();
+
+				if (conn.getResponseCode() != 200) {
+					System.out.println("ERROR CODE: " + conn.getResponseCode());
+				
+
+					BufferedReader br = new BufferedReader(new InputStreamReader(
+							(conn.getInputStream())));
+					String output;
+					System.out.println("Output from Server .... \n");
+					while ((output = br.readLine()) != null) {
+						System.out.println(output);
+					}
+					searchresult = "getResponseCode: 200";
+				}else {
+					searchresult = "Results not found";
+				}
+			    try {
+			    	request.setAttribute("result", input);
+			    	getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+	//		    	response.sendRedirect("http://localhost:9000/query"); 
+	//		        getServletConfig().getServletContext().getRequestDispatcher("/result.jsp").forward(request,response);
+			    } catch (Exception e) {
+			    	e.printStackTrace();
+			    }
+			}//end if !null
+	   } catch (MalformedURLException e) {
+			e.printStackTrace();
+	   } catch (IOException e) {
+			e.printStackTrace();
+	  }finally{
+		try{conn.disconnect();}catch(Exception cone){}
+	  }
+			
+	}
+
+	private String noNulls(String in){
+		return (in == null)?"":in.trim();
+	}
+	
+	public void destroy() {
+		// do nothing.
+	}
+
+}
