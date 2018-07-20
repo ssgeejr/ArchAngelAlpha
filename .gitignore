@@ -36,4 +36,6 @@ frontend/.extrace
 service/.service
 frontend/.service
 
-.classpath
+.settings
+service/.settings
+frontend/.settings
