@@ -1,4 +1,4 @@
-package online.ioexcept;
+package ioexcept.online.service;
 
 import java.net.UnknownHostException;
 import com.mongodb.MongoClient;
@@ -38,7 +38,7 @@ public class MongoConnectionmanager {
 	}
 
 	public MongoDatabase getDatabase(String dbase) throws Exception{
-	 return mongoClient.getDatabase("mydb");
+	 return mongoClient.getDatabase("sku");
 	}
 	
 	public void closeConnection() {

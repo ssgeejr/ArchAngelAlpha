@@ -1,4 +1,4 @@
-package online.ioexcept;
+package ioexcept.online.service;
 
 //http://mongodb.github.io/mongo-java-driver/3.4/driver/getting-started/quick-start/
 

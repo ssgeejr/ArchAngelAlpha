@@ -15,6 +15,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.mongodb.client.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bson.Document;
+import org.json.*;
+import org.json.JsonObject;
+import static com.mongodb.client.model.Filters.eq;
+
 @Path("/")
 public class ArchAngelService {
 
@@ -39,21 +49,51 @@ public class ArchAngelService {
 	@Path("/query")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response query(InputStream incomingData) {
+		int responseCode = 200;
 		System.out.println("^^^^^^^^^^^^^^^^^^^^^");
 		StringBuilder incomingJSONData = new StringBuilder();
+		MongoDatabase mongodb = null;
+		MongoConnectionmanager connMan = null;
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 			String line = null;
 			while ((line = in.readLine()) != null) {
 				incomingJSONData.append(line);
 			}
-		} catch (Exception e) {
+			org.json.JsonObject jsonObject = new org.json.JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
+			String key = jsonObject.get("key").getAsString();
+			String value = jsonObject.get("value").getAsString();
+			System.out.println("key: " + key); //John
+			System.out.println("value: " + value);
+			
+			System.out.println("==========>> Open Connection <<==========");
+			connMan = new MongoConnectionmanager("mongodb",27017);
+			mongodb = connMan.getDatabase("sku");
+			System.out.println("__________>> END [Open Connection] <<__________");
+			System.out.println("==========>> Fetch Filtered Record <<==========");
+			MongoCollection<Document> collection = mongodb.getCollection("gsma");
+//			"Marketing Name" : "A53",
+			
+			
+			Document olethaFilter = collection.find(eq(key, value)).first();
+//			Document olethaFilter = collection.find(eq("city", "Olathe")).first();
+			System.out.println(olethaFilter.toJson());
+			System.out.println("__________>> END [Fetch Filtered Record] <<__________");
+			incomingJSONData.setLength(0);
+			incomingJSONData.append(olethaFilter.toJson());
+		}catch(Exception ex) {
 			System.out.println("Error Parsing: - ");
+			responseCode = 406;		//Not Acceptable
+			ex.printStackTrace();
+			incomingJSONData.setLength(0);
+			incomingJSONData.append(ex.getMessage());
+		}finally {
+			if (connMan != null) connMan.closeConnection();
 		}
-		System.out.println("Data Received: " + incomingJSONData.toString());
- 
-		// return HTTP response 200 in case of success
-		return Response.status(200).entity(incomingJSONData.toString()).build();
+		
+		
+		System.out.println("Return Code [" + responseCode + "] Response [" + incomingJSONData.toString() + "]");
+		return Response.status(responseCode).entity(incomingJSONData.toString()).build();
 	}
  
 	@GET
