@@ -1,6 +1,9 @@
 # ArchAngel
 Sample Project: standalone, java, containerized microservice ... with a Mongo and CouchDB backend
 
+#### Note: If maven fails, exeute  
+mvn versions:display-dependency-updates
+
 ### Index
 * [Build Application](#build-application)
 * [Build Docker image](#build-docker-image)
