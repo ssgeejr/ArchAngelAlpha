@@ -27,14 +27,14 @@ public class FrontEndServlet extends HttpServlet {
 //			if(request.getParameter("manufacturer") != null) {
 				
 //				String key = noNulls((String)request.getParameter("fieldUno")).equals("0")?"Manufacturer":"Marketing Name";
-				String mfg = noNulls((String)request.getParameter("manufacturer"));
-				System.out.println("Value: " + mfg);
+				String car = noNulls((String)request.getParameter("manufacturer"));
+				System.out.println("Value: " + car);
 				URL url = new URL("http://localhost:9000/archangel/query");
 				conn = (HttpURLConnection) url.openConnection();
 				conn.setDoOutput(true);
 				conn.setRequestMethod("POST");
 				conn.setRequestProperty("Content-Type", "application/json");
-				String input = "{\"Manufacturer\":\"" + mfg + "\"}";
+				String input = "{\"car_model\":\"" + car + "\"}";
 				System.out.println(input);
 				OutputStream os = conn.getOutputStream();
 				os.write(input.getBytes());
@@ -54,8 +54,9 @@ public class FrontEndServlet extends HttpServlet {
 					searchresult = "Results not found";
 				}
 			    try {
-			    	request.setAttribute("result", input);
-			    	getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+			    	request.setAttribute("car", input);
+//			    	getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+			    	getServletConfig().getServletContext().getRequestDispatcher("http://localhost:9000/query").forward(request,response);
 	//		    	response.sendRedirect("http://localhost:9000/query"); 
 	//		        getServletConfig().getServletContext().getRequestDispatcher("/result.jsp").forward(request,response);
 			    } catch (Exception e) {

@@ -27,16 +27,16 @@ import static com.mongodb.client.model.Filters.eq;
 
 @Path("/")
 public class ArchAngelService {
+	private MongoConnectionmanager connMan = null;
+	private  MongoDatabase mongodb = null;
 
 	@POST
 	@Path("/fetch")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response lookupResource(@FormParam("fieldUno") String uno,
-	    @FormParam("fieldDos") String dos){
+	public Response lookupResource(@FormParam("car") String car){
 	    try {	
 	    	System.out.println("@@@@@@@@@@@@@@@@@@@@@");
-	    	System.out.println("UNO: " + uno);
-	    	System.out.println("DOS: " + dos);
+	    	System.out.println("CAR: " + car);
 	    	return Response.status(200).build();
 	    }catch(Exception ex) {
 	    	ex.printStackTrace();
@@ -61,26 +61,26 @@ public class ArchAngelService {
 				incomingJSONData.append(line);
 			}
 			org.json.JsonObject jsonObject = new org.json.JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
-			String key = jsonObject.get("key").getAsString();
-			String value = jsonObject.get("value").getAsString();
-			System.out.println("key: " + key); //John
-			System.out.println("value: " + value);
+			String key = jsonObject.get("car").getAsString();
+//			String value = jsonObject.get("value").getAsString();
+			System.out.println("car: " + car); //John
+//			System.out.println("value: " + value);
 			
 			System.out.println("==========>> Open Connection <<==========");
-			connMan = new MongoConnectionmanager("mongodb",27017);
-			mongodb = connMan.getDatabase("sku");
+			openConnection();
 			System.out.println("__________>> END [Open Connection] <<__________");
 			System.out.println("==========>> Fetch Filtered Record <<==========");
 			MongoCollection<Document> collection = mongodb.getCollection("gsma");
 //			"Marketing Name" : "A53",
 			
 			
-			Document olethaFilter = collection.find(eq(key, value)).first();
+			Document olethaFilter = collection.find(eq(car, car)).first().pretty();
 //			Document olethaFilter = collection.find(eq("city", "Olathe")).first();
 			System.out.println(olethaFilter.toJson());
 			System.out.println("__________>> END [Fetch Filtered Record] <<__________");
 			incomingJSONData.setLength(0);
 			incomingJSONData.append(olethaFilter.toJson());
+			System.out.println(olethaFilter.toJson());
 		}catch(Exception ex) {
 			System.out.println("Error Parsing: - ");
 			responseCode = 406;		//Not Acceptable
@@ -106,6 +106,16 @@ public class ArchAngelService {
 		return Response.status(200).entity("Success").build();
 	}
  
+	
+	private void openConnection() throws Exception{
+		// update the connection manager for you configuration
+		System.out.println("==========>> Open Connection <<==========");
+		connMan = new MongoConnectionmanager();
+		mongodb = connMan.getDatabase("sku");
+		System.out.println("__________>> END [Open Connection] <<__________");
+	}
+
+	
 }
 
 
