@@ -24,17 +24,17 @@ public class FrontEndServlet extends HttpServlet {
 		try {
 
 			
-			if(request.getParameter("fieldUno") != null) {
-				System.out.println(noNulls((String)request.getParameter("fieldUno")));
-				String key = noNulls((String)request.getParameter("fieldUno")).equals("0")?"Manufacturer":"Marketing Name";
-				String value = noNulls((String)request.getParameter("fieldDos"));
-			
+//			if(request.getParameter("manufacturer") != null) {
+				
+//				String key = noNulls((String)request.getParameter("fieldUno")).equals("0")?"Manufacturer":"Marketing Name";
+				String mfg = noNulls((String)request.getParameter("manufacturer"));
+				System.out.println("Value: " + mfg);
 				URL url = new URL("http://localhost:9000/archangel/query");
 				conn = (HttpURLConnection) url.openConnection();
 				conn.setDoOutput(true);
 				conn.setRequestMethod("POST");
 				conn.setRequestProperty("Content-Type", "application/json");
-				String input = "{\"key\":\"" + key + "\",\"value\":\"" + value + "\"}";
+				String input = "{\"Manufacturer\":\"" + mfg + "\"}";
 				System.out.println(input);
 				OutputStream os = conn.getOutputStream();
 				os.write(input.getBytes());
@@ -42,8 +42,6 @@ public class FrontEndServlet extends HttpServlet {
 
 				if (conn.getResponseCode() != 200) {
 					System.out.println("ERROR CODE: " + conn.getResponseCode());
-				
-
 					BufferedReader br = new BufferedReader(new InputStreamReader(
 							(conn.getInputStream())));
 					String output;
@@ -63,7 +61,7 @@ public class FrontEndServlet extends HttpServlet {
 			    } catch (Exception e) {
 			    	e.printStackTrace();
 			    }
-			}//end if !null
+//			}//end if !null
 	   } catch (MalformedURLException e) {
 			e.printStackTrace();
 	   } catch (IOException e) {

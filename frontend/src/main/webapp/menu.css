@@ -1,8 +1,16 @@
-ï»¿<style>
+<style>
 
 body {
   background-color : #ffffff;
 }
+
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0;
+}
+
 .outline {
    border:1px solid #6655ff; width: 100%;
 }

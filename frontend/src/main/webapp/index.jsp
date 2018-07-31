@@ -39,11 +39,15 @@ button {
 <td class="auto-style2">
 <form action="/query" method="post">
 	<div class="auto-style1">
-	<select name="fieldUno" id="input1" style="width: 125px">
-	<option selected value="0">City</option>
-	<option value="1">ID</option>
+	<select name="manufacturer" id="input1" style="width: 125px">
+	<option value="Mitsubishi" selected="selected">Mitsubishi</option>
+	<option value="Motorola">Motorola</option>
+	<option value="Nokia">Nokia</option>
+	<option value="Panasonic">Panasonic</option>
+	<option value="Philips">Philips</option>
+	<option value="Sagem">Sagem</option>
+	<option value="Siemens">Siemens</option>
 	</select><br>
-	<input name="fieldDos" type="text" id="input2" style="width: 125px"/><br>
 	<button type="submit" style="width: 115px" name="Search">Search</button>	
 	</div>
 </form>
@@ -52,7 +56,9 @@ button {
 </table>
 <div class="auto-style1">
 </p>
+<pre>
 <%= searchresult %>
+</pre>
 </div>
 
 
