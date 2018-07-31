@@ -65,7 +65,7 @@ public class ArchAngelService {
 				incomingJSONData.append(line);
 			}
 //			JsonObject jsonObject = new JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
-			String carModel = Document.parse(incomingJSONData.toString()).get(constraint);
+			String carModel = (String)Document.parse(incomingJSONData.toString()).get(constraint);
 
 			
 			
