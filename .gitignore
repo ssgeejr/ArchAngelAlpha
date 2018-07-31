@@ -27,7 +27,6 @@ service/target
 frontend/target
 
 
-
 .extract
 service/.extract
 frontend/.extrace
