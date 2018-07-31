@@ -23,6 +23,11 @@ import java.util.List;
 import org.bson.Document;
 import static com.mongodb.client.model.Filters.eq;
 
+//import org.json.JSONArray;
+//import org.json.JSONException;
+//import org.json.JSONObject;
+
+
 @Path("/")
 public class ArchAngelService {
 	private MongoConnectionmanager connMan = null;
@@ -47,7 +52,7 @@ public class ArchAngelService {
 	@Path("/query")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response query(InputStream incomingData) {
-		String constraint = "car_model"
+		String constraint = "car_model";
 		int responseCode = 200;
 		System.out.println("^^^^^^^^^^^^^^^^^^^^^");
 		StringBuilder incomingJSONData = new StringBuilder();
@@ -59,8 +64,13 @@ public class ArchAngelService {
 			while ((line = in.readLine()) != null) {
 				incomingJSONData.append(line);
 			}
-			org.json.JsonObject jsonObject = new org.json.JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
-			String carModel = jsonObject.get(constraint).getAsString();
+//			JsonObject jsonObject = new JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
+			String carModel = Document.parse(incomingJSONData.toString()).get(constraint);
+
+			
+			
+//			String carModel =  jObj.getJSONArray(constraint).toString();
+//			String carModel = jsonObject.get(constraint).getAsString();
 //			String value = jsonObject.get("value").getAsString();
 			System.out.println(constraint + ": " + carModel); //John
 //			System.out.println("value: " + value);
@@ -71,6 +81,9 @@ public class ArchAngelService {
 			System.out.println("==========>> Fetch Filtered Record <<==========");
 			MongoCollection<Document> collection = mongodb.getCollection("gsma");
 			Document carFilter = collection.find(eq(constraint, carModel)).first();
+			
+			
+			
 			System.out.println(carFilter.toJson());
 		}catch(Exception ex) {
 			System.out.println("Error Parsing: - ");
