@@ -39,14 +39,13 @@ button {
 <td class="auto-style2">
 <form action="/query" method="post">
 	<div class="auto-style1">
-	<select name="manufacturer" id="input1" style="width: 125px">
-	<option value="Mitsubishi" selected="selected">Mitsubishi</option>
-	<option value="Motorola">Motorola</option>
-	<option value="Nokia">Nokia</option>
-	<option value="Panasonic">Panasonic</option>
-	<option value="Philips">Philips</option>
-	<option value="Sagem">Sagem</option>
-	<option value="Siemens">Siemens</option>
+	<select name="car" id="input1" style="width: 125px">
+		<option value="Canyon" selected="selected">Canyon</option>
+		<option value="Caravan">Caravan</option>
+		<option value="Compass">Compass</option>
+		<option value="Edge">Edge</option>
+		<option value="Maxima">Maxima</option>
+		<option value="Scirocco">Scirocco</option>
 	</select><br>
 	<button type="submit" style="width: 115px" name="Search">Search</button>	
 	</div>
