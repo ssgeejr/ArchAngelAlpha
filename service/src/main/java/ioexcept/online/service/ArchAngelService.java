@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
-import org.json.*;
-import org.json.JsonObject;
 import static com.mongodb.client.model.Filters.eq;
 
 @Path("/")
@@ -49,6 +47,7 @@ public class ArchAngelService {
 	@Path("/query")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response query(InputStream incomingData) {
+		String constraint = "car_model"
 		int responseCode = 200;
 		System.out.println("^^^^^^^^^^^^^^^^^^^^^");
 		StringBuilder incomingJSONData = new StringBuilder();
@@ -61,9 +60,9 @@ public class ArchAngelService {
 				incomingJSONData.append(line);
 			}
 			org.json.JsonObject jsonObject = new org.json.JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
-			String key = jsonObject.get("car").getAsString();
+			String carModel = jsonObject.get(constraint).getAsString();
 //			String value = jsonObject.get("value").getAsString();
-			System.out.println("car: " + car); //John
+			System.out.println(constraint + ": " + carModel); //John
 //			System.out.println("value: " + value);
 			
 			System.out.println("==========>> Open Connection <<==========");
@@ -71,16 +70,8 @@ public class ArchAngelService {
 			System.out.println("__________>> END [Open Connection] <<__________");
 			System.out.println("==========>> Fetch Filtered Record <<==========");
 			MongoCollection<Document> collection = mongodb.getCollection("gsma");
-//			"Marketing Name" : "A53",
-			
-			
-			Document olethaFilter = collection.find(eq(car, car)).first().pretty();
-//			Document olethaFilter = collection.find(eq("city", "Olathe")).first();
-			System.out.println(olethaFilter.toJson());
-			System.out.println("__________>> END [Fetch Filtered Record] <<__________");
-			incomingJSONData.setLength(0);
-			incomingJSONData.append(olethaFilter.toJson());
-			System.out.println(olethaFilter.toJson());
+			Document carFilter = collection.find(eq(constraint, carModel)).first();
+			System.out.println(carFilter.toJson());
 		}catch(Exception ex) {
 			System.out.println("Error Parsing: - ");
 			responseCode = 406;		//Not Acceptable
