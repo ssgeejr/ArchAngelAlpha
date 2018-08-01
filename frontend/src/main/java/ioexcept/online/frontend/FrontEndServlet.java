@@ -55,7 +55,7 @@ public class FrontEndServlet extends HttpServlet {
 					searchresult.append("Results not found");
 				}
 			    try {
-			    	request.setAttribute("car", searchresult.toString());
+			    	request.setAttribute("result", searchresult.toString());
 			    	getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
 //			    	getServletConfig().getServletContext().getRequestDispatcher("http://localhost:9000/query").forward(request,response);
 	//		    	response.sendRedirect("http://localhost:9000/query"); 
