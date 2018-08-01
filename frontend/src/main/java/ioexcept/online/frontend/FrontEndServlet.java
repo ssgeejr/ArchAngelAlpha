@@ -20,7 +20,7 @@ public class FrontEndServlet extends HttpServlet {
 		// Set response content type
 		response.setContentType("text/html");
 		HttpURLConnection conn = null;
-		String searchresult = "";
+		StringBuffer searchresult = new StringBuffer();
 		try {
 
 			
@@ -40,7 +40,7 @@ public class FrontEndServlet extends HttpServlet {
 				os.write(input.getBytes());
 				os.flush();
 
-				if (conn.getResponseCode() != 200) {
+				if (conn.getResponseCode() == 200) {
 					System.out.println("ERROR CODE: " + conn.getResponseCode());
 					BufferedReader br = new BufferedReader(new InputStreamReader(
 							(conn.getInputStream())));
@@ -48,13 +48,14 @@ public class FrontEndServlet extends HttpServlet {
 					System.out.println("Output from Server .... \n");
 					while ((output = br.readLine()) != null) {
 						System.out.println(output);
+						searchresult.append(output);
 					}
-					searchresult = "getResponseCode: 200";
+					
 				}else {
-					searchresult = "Results not found";
+					searchresult.append("Results not found");
 				}
 			    try {
-			    	request.setAttribute("car", input);
+			    	request.setAttribute("car", searchresult.toString());
 			    	getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
 //			    	getServletConfig().getServletContext().getRequestDispatcher("http://localhost:9000/query").forward(request,response);
 	//		    	response.sendRedirect("http://localhost:9000/query"); 
