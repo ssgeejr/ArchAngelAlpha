@@ -55,8 +55,8 @@ public class FrontEndServlet extends HttpServlet {
 				}
 			    try {
 			    	request.setAttribute("car", input);
-//			    	getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
-			    	getServletConfig().getServletContext().getRequestDispatcher("http://localhost:9000/query").forward(request,response);
+			    	getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+//			    	getServletConfig().getServletContext().getRequestDispatcher("http://localhost:9000/query").forward(request,response);
 	//		    	response.sendRedirect("http://localhost:9000/query"); 
 	//		        getServletConfig().getServletContext().getRequestDispatcher("/result.jsp").forward(request,response);
 			    } catch (Exception e) {

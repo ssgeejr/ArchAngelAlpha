@@ -55,6 +55,7 @@ public class ArchAngelService {
 		StringBuilder incomingJSONData = new StringBuilder();
 		MongoDatabase mongodb = null;
 		MongoConnectionmanager connMan = null;
+		String searchResult = "";
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 			String line = null;
@@ -82,9 +83,9 @@ public class ArchAngelService {
 			MongoCollection<Document> collection = mongodb.getCollection("gsma");
 			Document carFilter = collection.find(eq(constraint, carModel)).first();
 			
+			searchResult = carFilter.toJson();
 			
-			
-			System.out.println(carFilter.toJson());
+			System.out.println(searchResult);
 			System.out.println("__________>> END [Open Connection] <<__________");
 		}catch(Exception ex) {
 			System.out.println("Error Parsing: - ");
@@ -97,8 +98,8 @@ public class ArchAngelService {
 		}
 		
 		
-		System.out.println("Return Code [" + responseCode + "] Response [" + incomingJSONData.toString() + "]");
-		return Response.status(responseCode).entity(incomingJSONData.toString()).build();
+		System.out.println("Return Code [" + responseCode + "] Response [" + searchResult + "]");
+		return Response.status(responseCode).entity(searchResult).build();
 	}
  
 	@GET
@@ -110,16 +111,6 @@ public class ArchAngelService {
 // return HTTP response 200 in case of success
 		return Response.status(200).entity("Success").build();
 	}
- 
-	
-	private void openConnection() throws Exception{
-		// update the connection manager for you configuration
-		System.out.println("==========>> S <<==========");
-		connMan = new MongoConnectionmanager();
-		mongodb = connMan.getDatabase("sku");
-		System.out.println("__________>> END [Open Connection] <<__________");
-	}
-
 	
 }
 
