@@ -1,42 +1,40 @@
 #!/bin/bash
-
-
-#if [ -d "ArchAngel" ]; then
-#  echo "DIRECTORY EXISTS, exiting"
-#  exit -1
-#fi
-
-
+# Version 1.1-Alpha
 
 docker stop seededdb
-docker rmi -f $(docker images | grep 'mongo:seeded' | awk '{print $3}')
+docker stop archangelui
+docker stop archangelms
 
-kill -9 $(ps -ef | grep '[a]rchAngelService.jar' | awk '{print $2}')
-kill -9 $(ps -ef | grep '[a]rchAngelFrontEnd.jar' | awk '{print $2}')
-rm -rf .extract
-rm -rf frontend/.extract
-rm -rf service/.extract
+docker rmi -f $(docker images | grep 'mongo:seeded' | awk '{print $3}')
+docker rmi -f $(docker images | grep 'archangelui' | awk '{print $3}')
+docker rmi -f $(docker images | grep 'archangelms' | awk '{print $3}')
 
 cwd=$(pwd)
 
+mvn clean package
+
+cd $cwd
+cd frontend/docker
+docker build --tag archangeui .
+
+cd $cwd
+cd service/docker
+docker build --tag archangelms .
+
+cd $cwd
 cd database/docker
 docker build --tag mongodb:seeded .
 
-cd $cwd
-
-mvn clean package
-
-echo "starting ArchAngel WebAppUI"
-cd frontend
-java -jar target/archAngelFrontEnd.jar &
-cd $cwd
-
+# start the database
+docker run --name seededdb --rm -p 27017:27017 -ti -d mongodb:seeded
 
 echo "starting ArchAngel Microservice"
-cd service
-java -jar target/archAngelService.jar --httpPort=9000 &
+# start the microservice
+docker run --name archangelui --rm -p 8080:8080 -ti -d archangelui
 
-docker run --name seededdb --rm -p 27017:27017 -ti -d mongodb:seeded
+echo "starting ArchAngel WebAppUI"
+# start the Web-UI
+docker run --name archangelms --rm -p 9000:8080 -ti -d archangelms
 
 xhost=`hostname --ip-address`
 
