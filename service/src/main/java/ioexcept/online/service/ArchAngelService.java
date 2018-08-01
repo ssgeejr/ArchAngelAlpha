@@ -77,7 +77,7 @@ public class ArchAngelService {
 //			System.out.println("value: " + value);
 			
 			System.out.println("==========>> OPEN CONNECTION for Database 'sku' <<==========");
-			connMan = new MongoConnectionmanager();
+			connMan = new MongoConnectionmanager("seededdb");
 			mongodb = connMan.getDatabase("sku");
 			System.out.println("==========>> Fetch Filtered Record <<==========");
 			
