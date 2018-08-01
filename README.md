@@ -20,18 +20,21 @@ Clean the Environment
 * [Build Docker image](#build-docker-image)
 * [Start the WebApp](#start-the-webapp)
 * [Start the Microservice](#start-the-microservice)
-
-
-
-
-
-
-
-* [Starting](#starting)
+* [Start MongoDB](#start-mongodb)
 * [Testing](#testing)
 
 #### Bootstrap
 This section allows for the automated building and starting of the application without any general knowledge of docker, java or microservices
+
+**To build the stable version (main branch)**
+
+```
+git clone https://github.com/ssgeejr/ArchAngel.git  
+cd ArchAngel  
+sh bootstrap
+```
+
+**To build the develop branch**
 
 ```
 git clone https://github.com/ssgeejr/ArchAngel.git  
@@ -41,13 +44,23 @@ sh bootstrap
 ```
 
 ### Manually build and start the application
-this assumes you have done the following:
+
+**this assumes you have done the following:**  
+*indifferent to the branch you are working with, ensure you are in the ArchAngel directory*
+
+```
+git clone https://github.com/ssgeejr/ArchAngel.git  
+cd ArchAngel  
+```
+
+**To build the develop branch**
 
 ```
 git clone https://github.com/ssgeejr/ArchAngel.git  
 cd ArchAngel  
 git pull origin develop  
 ```
+
 
 ### Clean the Environment
 
@@ -96,6 +109,7 @@ docker run --name seededdb --rm -ti -p 27017:27017 mongodb:seeded
 
 #### Testing
 Point your browser to http://localhost:8080  
+
 You should see the Web UI, sleect a Car Model and Search for the data (only a single row will return)  
 (if the instance is running on a remote server, substitute that IP for localhost)  
 
