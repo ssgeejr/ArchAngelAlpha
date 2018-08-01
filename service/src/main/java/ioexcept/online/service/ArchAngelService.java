@@ -64,6 +64,9 @@ public class ArchAngelService {
 			while ((line = in.readLine()) != null) {
 				incomingJSONData.append(line);
 			}
+System.out.println("............................");
+System.out.println("INCOMING_JSON_DATE: " + incomingJSONData.toString());
+System.out.println("............................");
 //			JsonObject jsonObject = new JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
 			String carModel = (String)Document.parse(incomingJSONData.toString()).get(constraint);
 
@@ -77,7 +80,6 @@ public class ArchAngelService {
 			
 			System.out.println("==========>> Open Connection <<==========");
 			openConnection();
-			System.out.println("__________>> END [Open Connection] <<__________");
 			System.out.println("==========>> Fetch Filtered Record <<==========");
 			MongoCollection<Document> collection = mongodb.getCollection("gsma");
 			Document carFilter = collection.find(eq(constraint, carModel)).first();
@@ -85,6 +87,7 @@ public class ArchAngelService {
 			
 			
 			System.out.println(carFilter.toJson());
+			System.out.println("__________>> END [Open Connection] <<__________");
 		}catch(Exception ex) {
 			System.out.println("Error Parsing: - ");
 			responseCode = 406;		//Not Acceptable
