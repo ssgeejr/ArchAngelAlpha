@@ -111,7 +111,7 @@ public class ArchAngelService {
 		System.out.println("Verfied ArchAngelService online ...");
 //		String result = "";
 // return HTTP response 200 in case of success
-		return Response.status(200).entity("Success").build();
+		return Response.status(200).entity("Success").entity("Verfied ArchAngelService online ...").build();
 	}
 	
 }

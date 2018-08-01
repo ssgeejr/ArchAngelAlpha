@@ -6,4 +6,3 @@ WORKDIR /
 ADD . /
 EXPOSE 8080
 CMD ["java", "-jar", "archAngelFrontEnd.jar"]
-#CMD java -jar archAngelFrontEnd.jar
