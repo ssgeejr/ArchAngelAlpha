@@ -30,9 +30,6 @@ import static com.mongodb.client.model.Filters.eq;
 
 @Path("/")
 public class ArchAngelService {
-	private MongoConnectionmanager connMan = null;
-	private  MongoDatabase mongodb = null;
-
 	@POST
 	@Path("/fetch")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -64,9 +61,9 @@ public class ArchAngelService {
 			while ((line = in.readLine()) != null) {
 				incomingJSONData.append(line);
 			}
-System.out.println("............................");
-System.out.println("INCOMING_JSON_DATE: " + incomingJSONData.toString());
-System.out.println("............................");
+			System.out.println("............................");
+			System.out.println("INCOMING_JSON_DATE: " + incomingJSONData.toString());
+			System.out.println("............................");
 //			JsonObject jsonObject = new JsonObject().parse(incomingJSONData.toString()).getAsJsonObject();
 			String carModel = (String)Document.parse(incomingJSONData.toString()).get(constraint);
 
@@ -78,8 +75,9 @@ System.out.println("............................");
 			System.out.println(constraint + ": " + carModel); //John
 //			System.out.println("value: " + value);
 			
-			System.out.println("==========>> Open Connection <<==========");
-			openConnection();
+			System.out.println("==========>> OPEN CONNECTION for Database 'sku' <<==========");
+			connMan = new MongoConnectionmanager();
+			mongodb = connMan.getDatabase("sku");
 			System.out.println("==========>> Fetch Filtered Record <<==========");
 			MongoCollection<Document> collection = mongodb.getCollection("gsma");
 			Document carFilter = collection.find(eq(constraint, carModel)).first();
@@ -116,7 +114,7 @@ System.out.println("............................");
 	
 	private void openConnection() throws Exception{
 		// update the connection manager for you configuration
-		System.out.println("==========>> Open Connection <<==========");
+		System.out.println("==========>> S <<==========");
 		connMan = new MongoConnectionmanager();
 		mongodb = connMan.getDatabase("sku");
 		System.out.println("__________>> END [Open Connection] <<__________");

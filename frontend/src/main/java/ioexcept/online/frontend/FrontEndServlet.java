@@ -27,7 +27,7 @@ public class FrontEndServlet extends HttpServlet {
 //			if(request.getParameter("manufacturer") != null) {
 				
 //				String key = noNulls((String)request.getParameter("fieldUno")).equals("0")?"Manufacturer":"Marketing Name";
-				String car = noNulls((String)request.getParameter("manufacturer"));
+				String car = noNulls((String)request.getParameter("car"));
 				System.out.println("Value: " + car);
 				URL url = new URL("http://localhost:9000/archangel/query");
 				conn = (HttpURLConnection) url.openConnection();
