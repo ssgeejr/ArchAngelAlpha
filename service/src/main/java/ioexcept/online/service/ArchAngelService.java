@@ -80,9 +80,11 @@ public class ArchAngelService {
 			connMan = new MongoConnectionmanager();
 			mongodb = connMan.getDatabase("sku");
 			System.out.println("==========>> Fetch Filtered Record <<==========");
-			MongoCollection<Document> collection = mongodb.getCollection("gsma");
-			Document carFilter = collection.find(eq(constraint, carModel)).first();
 			
+			MongoCollection<Document> collection = mongodb.getCollection("gsma");
+			int limit = 3;
+			Document carFilter = collection.find(eq(constraint, carModel)).limit(limit);
+//			Document carFilter = collection.find(eq(constraint, carModel)).first();
 			searchResult = carFilter.toJson();
 			
 			System.out.println(searchResult);
