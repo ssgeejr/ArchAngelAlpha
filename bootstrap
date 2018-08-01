@@ -38,4 +38,7 @@ java -jar target/archAngelService.jar --httpPort=9000 &
 
 docker run --name seededdb --rm -p 27017:27017 -ti -d mongodb:seeded
 
-echo ".............. The ArchAngel is now online .............."
+xhost=`hostname --ip-address`
+
+echo ">>> The ArchAngel is now online"
+echo "http://$xhost:8080"
