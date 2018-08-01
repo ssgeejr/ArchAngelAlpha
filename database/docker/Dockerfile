@@ -1,6 +1,8 @@
 FROM mongo:latest
 
 LABEL maintainer="ioexcept@gmail.com"
+LABEL version="1.1"
+
 
 # Modify child mongo to use /data/db2 as dbpath (because /data/db wont persist the build)
 RUN mkdir -p /data/db2 \
