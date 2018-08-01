@@ -3,7 +3,7 @@ FROM java:8
 LABEL maintainer="ioexcept@gmail.com"
 
 WORKDIR /
-ADD .
+ADD . /
 EXPOSE 8080
-CMD CMD ["java", "-jar", "archAngelFrontEnd.jar"]
+CMD ["java", "-jar", "archAngelFrontEnd.jar"]
 #CMD java -jar archAngelFrontEnd.jar
