@@ -32,7 +32,7 @@ button {
 <tr>
 <td style="text-align: center; vertical-align: middle; color: #000080;">
 <img alt="" src="archangel-logo.png" height="80" width="95">
-<h2> OMIM Microservice Sample Project: ArchAngel </h2>
+<h2> ArchAngel: A microservice example project</h2>
 </td>
 </tr>
 <tr>
