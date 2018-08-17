@@ -44,7 +44,6 @@ public class ArchAngelService {
 	    }
 	}		
 		
-		
 	@POST
 	@Path("/query")
 	@Consumes(MediaType.APPLICATION_JSON)

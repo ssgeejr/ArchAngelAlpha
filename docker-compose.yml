@@ -1,0 +1,29 @@
+#ArchAngel docker-compose
+version: '3'
+services:
+    mongo:
+        image: mongodb:seeded
+        container_name: seededdb
+        tty: true
+        stdin_open: true
+        restart: always
+
+    service:
+        image: archangelms
+        container_name: archangelms
+        links:
+            - seededdb:seededdb
+        tty: true
+        stdin_open: true
+        restart: always
+
+   nginx:
+        image: archangelui
+        container_name: archangelui
+        ports:
+            - 8080:8080
+        links:
+            - archangelms:archangelms
+        tty: true
+        stdin_open: true
+        restart: always
