@@ -21,7 +21,7 @@ services:
         image: archangelui
         container_name: archangelui
         ports:
-            - 8080:8080
+            - 10080:8080
         links:
             - service:archangelms
         tty: true
