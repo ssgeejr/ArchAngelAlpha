@@ -4,6 +4,9 @@ services:
     mongo:
         image: mongodb:seeded
         container_name: seededdb
+		networks:
+          app_net:
+              ipv4_address: 192.168.50.10
         tty: true
         stdin_open: true
         restart: always
@@ -13,6 +16,9 @@ services:
         container_name: archangelms
         links:
             - mongo:seededdb
+		networks:
+          app_net:
+              ipv4_address: 192.168.50.20
         tty: true
         stdin_open: true
         restart: always
@@ -24,6 +30,17 @@ services:
             - 10080:8080
         links:
             - service:archangelms
+		networks:
+          app_net:
+              ipv4_address: 192.168.50.30
         tty: true
         stdin_open: true
         restart: always
+		
+networks:
+   app_net:
+      driver: bridge
+      ipam:
+         driver: default
+         config:
+            - subnet: 192.168.50.0/24
