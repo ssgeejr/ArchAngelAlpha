@@ -1,0 +1,201 @@
+Error response from daemon: No such container: seededdb
+Error response from daemon: No such container: archangelui
+Error response from daemon: No such container: archangelms
+"docker rmi" requires at least 1 argument.
+See 'docker rmi --help'.
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...] [flags]
+
+Remove one or more images
+"docker rmi" requires at least 1 argument.
+See 'docker rmi --help'.
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...] [flags]
+
+Remove one or more images
+"docker rmi" requires at least 1 argument.
+See 'docker rmi --help'.
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...] [flags]
+
+Remove one or more images
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] ArchAngel                                                          [pom]
+[INFO] archAngelService                                                   [war]
+[INFO] ArchAngelFrontEnd                                                  [war]
+[INFO] 
+[INFO] -----------------------< org.ioexcept:ArchAngel >-----------------------
+[INFO] Building ArchAngel 1.0-SNAPSHOT                                    [1/3]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ ArchAngel ---
+[INFO] 
+[INFO] -------------------< org.ioexcept:archAngelService >--------------------
+[INFO] Building archAngelService 1.0-SNAPSHOT                             [2/3]
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ archAngelService ---
+[INFO] Deleting /opt/dev/ArchAngel/service/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ archAngelService ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /opt/dev/ArchAngel/service/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ archAngelService ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /opt/dev/ArchAngel/service/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ archAngelService ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /opt/dev/ArchAngel/service/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ archAngelService ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ archAngelService ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ archAngelService ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [archAngelService] in [/opt/dev/ArchAngel/service/target/archAngelService]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/opt/dev/ArchAngel/service/src/main/webapp]
+[INFO] Webapp assembled in [44 msecs]
+[INFO] Building war: /opt/dev/ArchAngel/service/target/archAngelService.war
+[INFO] WEB-INF/web.xml already added, skipping
+[INFO] 
+[INFO] --- tomcat7-maven-plugin:2.1:exec-war-only (tomcat-run) @ archAngelService ---
+[INFO] 
+[INFO] -------------------< org.ioexcept:ArchAngelFrontEnd >-------------------
+[INFO] Building ArchAngelFrontEnd 1.0-SNAPSHOT                            [3/3]
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ ArchAngelFrontEnd ---
+[INFO] Deleting /opt/dev/ArchAngel/frontend/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ArchAngelFrontEnd ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /opt/dev/ArchAngel/frontend/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ ArchAngelFrontEnd ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /opt/dev/ArchAngel/frontend/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ ArchAngelFrontEnd ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /opt/dev/ArchAngel/frontend/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ ArchAngelFrontEnd ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ArchAngelFrontEnd ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ ArchAngelFrontEnd ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [ArchAngelFrontEnd] in [/opt/dev/ArchAngel/frontend/target/archAngelFrontEnd]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/opt/dev/ArchAngel/frontend/src/main/webapp]
+[INFO] Webapp assembled in [145 msecs]
+[INFO] Building war: /opt/dev/ArchAngel/frontend/target/archAngelFrontEnd.war
+[INFO] WEB-INF/web.xml already added, skipping
+[INFO] 
+[INFO] --- tomcat7-maven-plugin:2.1:exec-war-only (tomcat-run) @ ArchAngelFrontEnd ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] ArchAngel 1.0-SNAPSHOT ............................. SUCCESS [  0.185 s]
+[INFO] archAngelService ................................... SUCCESS [  4.716 s]
+[INFO] ArchAngelFrontEnd 1.0-SNAPSHOT ..................... SUCCESS [  2.586 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 7.630 s
+[INFO] Finished at: 2018-08-20T09:11:27-05:00
+[INFO] ------------------------------------------------------------------------
+creating the archangelui (Web UI) Image
+Sending build context to Docker daemon  8.945MB
+Step 1/7 : FROM java:8
+ ---> d23bdf5b1b1b
+Step 2/7 : LABEL maintainer="ioexcept@gmail.com"
+ ---> Using cache
+ ---> 5d81c36e3f72
+Step 3/7 : LABEL version="1.1"
+ ---> Running in 9f1c9f592657
+Removing intermediate container 9f1c9f592657
+ ---> 029bfc0018b3
+Step 4/7 : WORKDIR /
+Removing intermediate container 852c355ec6ef
+ ---> 6ac2163075ef
+Step 5/7 : ADD . /
+ ---> 727657c5b23c
+Step 6/7 : EXPOSE 8080
+ ---> Running in 196502dd0731
+Removing intermediate container 196502dd0731
+ ---> fe6ddd7ac331
+Step 7/7 : CMD ["java", "-jar", "archAngelFrontEnd.jar"]
+ ---> Running in 2bc5591c3a17
+Removing intermediate container 2bc5591c3a17
+ ---> 7b878c1899b2
+Successfully built 7b878c1899b2
+Successfully tagged archangelui:latest
+creating the archangelms (Microservice) Image
+Sending build context to Docker daemon   13.3MB
+Step 1/7 : FROM java:8
+ ---> d23bdf5b1b1b
+Step 2/7 : LABEL maintainer="ioexcept@gmail.com"
+ ---> Using cache
+ ---> 5d81c36e3f72
+Step 3/7 : LABEL version="1.1"
+ ---> Using cache
+ ---> 029bfc0018b3
+Step 4/7 : WORKDIR /
+ ---> Using cache
+ ---> 6ac2163075ef
+Step 5/7 : ADD . /
+ ---> ac609999f695
+Step 6/7 : EXPOSE 8080
+ ---> Running in 6252408dd9ab
+Removing intermediate container 6252408dd9ab
+ ---> 640d9ac6789f
+Step 7/7 : CMD ["java", "-jar", "archAngelService.jar"]
+ ---> Running in 5f821575f87b
+Removing intermediate container 5f821575f87b
+ ---> 3513612416cc
+Successfully built 3513612416cc
+Successfully tagged archangelms:latest
+creating the mongodb:seeded (MongoDB preloaded data) Image
+Sending build context to Docker daemon  13.31kB
+Step 1/9 : FROM mongo:latest
+ ---> 87f1a6e84e00
+Step 2/9 : LABEL maintainer="ioexcept@gmail.com"
+ ---> Using cache
+ ---> 993abb98186a
+Step 3/9 : LABEL version="1.1"
+ ---> Using cache
+ ---> 047c0fd123e1
+Step 4/9 : RUN mkdir -p /data/db2 && mkdir /files     && echo "dbpath = /data/db2" > /etc/mongodb.conf
+ ---> Using cache
+ ---> b7e25c13c8bf
+Step 5/9 : ADD . /files
+ ---> Using cache
+ ---> eeb52d35a619
+Step 6/9 : RUN chown -R mongodb:mongodb /data/db2 && chown -R mongodb:mongodb /files
+ ---> Using cache
+ ---> 3dc4e563f8f4
+Step 7/9 : RUN mongod --fork --logpath /var/log/mongodb.log --dbpath /data/db2 --smallfiles && sleep 20     && mongoimport --db sku --collection gsma --type csv --headerline --file /files/mock_data.csv     && mongod --dbpath /data/db2 --shutdown     && chown -R mongodb /data/db2
+ ---> Using cache
+ ---> cb3aa9da8d99
+Step 8/9 : VOLUME /data/db2
+ ---> Using cache
+ ---> 7adfd60417ad
+Step 9/9 : CMD ["mongod", "--config", "/etc/mongodb.conf", "--smallfiles"]
+ ---> Using cache
+ ---> 20d722541931
+Successfully built 20d722541931
+Successfully tagged mongodb:seeded
+>>> The ArchAngel is now online
+http://144.229.218.200:8080
