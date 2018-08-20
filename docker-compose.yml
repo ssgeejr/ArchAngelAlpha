@@ -3,20 +3,26 @@ services:
     mongo:
         image: 'mongodb:seeded'
         container_name: seededdb
-    networks:
-        app_net:
-            ipv4_address: 192.168.50.10
+        networks:
+                app_net:
+                        ipv4_address: 192.168.50.10
         tty: true
         stdin_open: true
         restart: always
     service:
         image: archangelms
         container_name: archangelms
+        networks:
+                app_net:
+                        ipv4_address: 192.168.50.20
         links:
             - 'mongo:seededdb'
     nginx:
         image: archangelui
         container_name: archangelui
+        networks:
+                app_net:
+                        ipv4_address: 192.168.50.30
         ports:
             - '10080:8080'
         links:
