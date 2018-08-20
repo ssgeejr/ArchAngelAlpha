@@ -7,6 +7,13 @@
 # BlueJ files
 *.ctxt
 
+IntelliJ
+.idea
+.extract
+*.iml
+frontend/*.iml
+service/*.iml
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
