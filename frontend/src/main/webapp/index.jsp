@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>ArchAngel Microservice Concepting</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <style type="text/css">
 .auto-style1 {
@@ -31,7 +32,7 @@ button {
 <table  style="width:100%">
 <tr>
 <td style="text-align: center; vertical-align: middle; color: #000080;">
-<img alt="" src="003.png" height="80" width="95">
+<img alt="" src="0032png" >
 <h2> ArchAngel: A microservice example project</h2>
 </td>
 </tr>
