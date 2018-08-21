@@ -23,6 +23,10 @@ Once loaded into your shell, you can call it with:
 $ docker-compose-restart [SERVICE...]
 ```
 
+... OR ... you can use this command line option (which does the same thing)  
+```
+docker-compose up -d --no-deps --build <service_name>
+```
 
 ### ToDo
 
