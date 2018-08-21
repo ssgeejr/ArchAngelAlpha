@@ -1,6 +1,29 @@
 # ArchAngel
 Simple Microservice Project: ArchAngel simulates a front-end composed of a single jsp and a "widget" that enabled http injection, a microservice running on a sererate IP and container (instance) which takls to a pre-seeded MongoDB container
 
+### Make it Rain
+
+add the following to ~/.profile 
+```
+# restart services in docker-compose
+docker-compose-restart(){
+	docker-compose stop $@
+	docker-compose rm -f -v $@
+# -- DEPRICATED --
+	#docker-compose create --force-recreate $@
+	docker-compose up --no-start $@
+	docker-compose start $@
+}
+
+```
+
+log out, log back in ( or refresh your profile . ~/.profile ))  
+Once loaded into your shell, you can call it with:  
+```
+$ docker-compose-restart [SERVICE...]
+```
+
+
 ### ToDo
 
 * containerize the Front-end and microservice (MongoDB completed)

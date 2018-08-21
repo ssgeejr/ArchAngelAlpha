@@ -12,6 +12,7 @@ services:
         tty: true
         stdin_open: true
         restart: always
+
     service:
         image: archangelms
         container_name: archangelms
