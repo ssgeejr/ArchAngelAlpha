@@ -4,8 +4,8 @@ services:
         image: 'mongodb:seeded'
         container_name: seededdb
         networks:
-                app_net:
-                        ipv4_address: 192.168.50.10
+                archangel_net:
+                        ipv4_address: 10.10.11.10
                         aliases:
                                 - seededdb
 
@@ -17,8 +17,8 @@ services:
         image: archangelms
         container_name: archangelms
         networks:
-                app_net:
-                        ipv4_address: 192.168.50.20
+                archangel_net:
+                        ipv4_address: 10.10.11.20
                         aliases:
                                 - archangelms
 
@@ -26,13 +26,15 @@ services:
         image: archangelui
         container_name: archangelui
         networks:
-                app_net:
-                        ipv4_address: 192.168.50.30
+                archangel_net:
+                        ipv4_address: 10.10.11.30
         ports:
             - '10080:8080'
+
 networks:
-    app_net:
-        driver: bridge
+    archangel_net:
         ipam:
             driver: default
-            config: [{subnet: 192.168.50.0/24}]
+            config:
+                - subnet: 10.10.11.0/24
+
