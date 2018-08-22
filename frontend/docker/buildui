@@ -1,0 +1,6 @@
+#!/bin/bash
+
+docker rmi -f archangelui
+rm -f archAngelFrontEnd.jar
+cp ../target/archAngelFrontEnd.jar .
+docker build -t archangelui .

@@ -29,7 +29,7 @@ services:
                 archangel_net:
                         ipv4_address: 10.10.11.30
         ports:
-            - '10080:8080'
+            - '80:8080'
 
 networks:
     archangel_net:
