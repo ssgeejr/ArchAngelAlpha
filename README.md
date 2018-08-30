@@ -103,9 +103,22 @@ java -jar target/archAngelService.jar --httpPort=9000 &
 
 #### Start MongoDB
 
+# non-docker option
+Download and install [MongoDB Community](https://www.mongodb.com/download-center#community)
+start mongodb; ```mongod.exe```
+cd database/docker
+and import the data (this only needs to be done once)
+```
+mongoimport --db sku --collection gsma --type csv --headerline --file mock_data.csv
+```
+
+*** docker version ***
 ```
 docker run --name seededdb --rm -ti -p 27017:27017 mongodb:seeded
 ```
+
+
+
 
 #### Testing
 Point your browser to http://localhost:8080  
